@@ -10,4 +10,5 @@ public class ApplicationDbContext : DbContext
     }
     
     public DbSet<School> Schools { get; set; }
+    public DbSet<Teacher> Teachers { get; set; }
 }
