@@ -1,6 +1,7 @@
 using SMS.Data;
 using SMS.Entities;
 using SMS.Interface;
+using System.Threading.Tasks;
 
 namespace SMS.Repositories
 {
@@ -9,6 +10,7 @@ namespace SMS.Repositories
         private readonly ApplicationDbContext _context;
         private IRepository<School> _schoolRepository;
         private IRepository<Teacher> _teacherRepository;
+        private IRepository<Student> _studentRepository;
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -23,6 +25,11 @@ namespace SMS.Repositories
         public IRepository<Teacher> Teachers 
         {
             get { return _teacherRepository ??= new Repository<Teacher>(_context); }
+        }
+
+        public IRepository<Student> Students 
+        {
+            get { return _studentRepository ??= new Repository<Student>(_context); }
         }
 
         public async Task<int> CommitAsync()

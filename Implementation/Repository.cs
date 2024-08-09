@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using SMS.Data;
 using SMS.Interface;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SMS.Repositories
 {
@@ -12,7 +14,7 @@ namespace SMS.Repositories
         public Repository(ApplicationDbContext context)
         {
             _context = context;
-            _dbSet = context.Set<T>();
+            _dbSet = _context.Set<T>();
         }
 
         public async Task<T> GetByIdAsync(int id)
@@ -32,11 +34,16 @@ namespace SMS.Repositories
 
         public void Update(T entity)
         {
-            _dbSet.Update(entity);
+            _dbSet.Attach(entity);
+            _context.Entry(entity).State = EntityState.Modified;
         }
 
         public void Delete(T entity)
         {
+            if (_context.Entry(entity).State == EntityState.Detached)
+            {
+                _dbSet.Attach(entity);
+            }
             _dbSet.Remove(entity);
         }
 
