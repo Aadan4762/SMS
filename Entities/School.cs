@@ -6,6 +6,6 @@ public class School
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Gender { get; set; }
-    public int Grade { get; set; }
+    public float GradePoints { get; set; }
 }
 

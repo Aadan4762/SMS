@@ -19,7 +19,7 @@ namespace SMS.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Grade = table.Column<int>(type: "int", nullable: false)
+                    GradePoints = table.Column<float>(type: "real", nullable: false)
                 },
                 constraints: table =>
                 {

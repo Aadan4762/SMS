@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SMS.Data;
+using SMS.Interface;
+using SMS.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Configure DbContext with connection string from appsettings.json
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Register the UnitOfWork and Repository services
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

@@ -37,8 +37,8 @@ namespace SMS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Grade")
-                        .HasColumnType("int");
+                    b.Property<float>("GradePoints")
+                        .HasColumnType("real");
 
                     b.Property<string>("LastName")
                         .IsRequired()
